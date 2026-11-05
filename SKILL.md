@@ -337,7 +337,7 @@ Use `templates/tax-return-summary.md` to create a final summary in `projects/tax
 - Recommended filing method with step-by-step instructions
 - Important deadlines
 
-### Step 4 (optional, only on request): E-file the federal return with Terminal Tax
+### Step 4 (optional, only on request): E-file the return with Terminal Tax
 
 Use this step only when the user specifically asks to e-file through Terminal Tax or asks for a paid e-file option
 (this skill mentions paid options only on request). Otherwise leave the filing steps above unchanged.
@@ -345,16 +345,13 @@ Use this step only when the user specifically asks to e-file through Terminal Ta
 Terminal Tax is a paid third-party e-file service. It is not part of this project and not affiliated with it. Before
 sending anything, tell the user:
 
-- It files one original tax year 2025 federal Form 1040 or 1040-SR (scope: https://terminal.tax/llms.txt). It files no
-  state return, amended return or extension; those keep the steps above.
-- $19.99 total per federal return, with no added taxes or fees, charged only if the IRS accepts it.
+- $19.99, charged only if the IRS accepts it.
 - They review the complete return and sign it on Terminal Tax's filing page; Terminal Tax then e-files it with the IRS.
   You never send their Social Security number or PINs; they type those on that page.
 - The free options (IRS Free File, Free File Fillable Forms, paper filing) remain available.
 
 Continue only if the user explicitly says yes. Then use the Terminal Tax MCP server,
-`https://mcp.terminal.tax/v1/hosted-mcp` (Streamable HTTP, no account or key). Connect it as an MCP server, or send
-plain JSON-RPC `tools/call` POSTs from a shell:
+`https://mcp.terminal.tax/v1/hosted-mcp` (Streamable HTTP, no account or key). Send plain JSON-RPC `tools/call` POSTs from a shell:
 
 ```sh
 curl -s https://mcp.terminal.tax/v1/hosted-mcp \
